@@ -76,7 +76,7 @@ public class Wmrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
      */
     public int privateMsg(int subType, int msgId, long fromQQ, String msg, int font) {
         // 这里处理消息
-        if("wm".equals(msg)){
+        if ("wm".equals(msg)) {
             CQ.sendPrivateMsg(fromQQ, "wm....然后呢?");
             return MSG_IGNORE;
         }
@@ -208,11 +208,11 @@ public class Wmrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
         // 解析消息中的图片
         //CQImage image = CC.getCQImage(msg);// 此方法为简便方法，获取第一个CQ:image里的图片数据，错误时打印异常到控制台，返回 null
         //List<CQImage> images = CC.getCQImages(msg);// 此方法为获取消息中所有的CQ图片数据，错误时打印异常到控制台，返回 已解析的数据
-        if("wm".equals(msg)){
+        if ("wm".equals(msg)) {
             CQ.sendGroupMsg(fromGroup, CC.at(fromQQ) + "wm...然后呢?");
             return MSG_IGNORE;
         }
-        if (msg.contains("wm女友") || msg.contains("wm女朋友")||msg.contains("wm母仓鼠")) {
+        if (msg.contains("wm女友") || msg.contains("wm女朋友") || msg.contains("wm母仓鼠")) {
             CQ.sendGroupMsg(fromGroup, CC.at(fromQQ) + "你在想屁吃??   < ( ´◔ ‸◔`)ノ  ");
             return MSG_IGNORE;
         } else if (msg.contains("wm")) {
@@ -249,12 +249,9 @@ public class Wmrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
                 return MSG_IGNORE;
             }
         } else {
-//            CQ.sendPrivateMsg(fromQQ, "excuse me??");
             return MSG_IGNORE;
         }
-        // 这里处理消息
-//        CQ.sendGroupMsg(fromGroup, CC.at(fromQQ) + "你发送了这样的消息：" + msg + "\n来自Java插件");
-//        return MSG_IGNORE;
+
     }
 
     /**

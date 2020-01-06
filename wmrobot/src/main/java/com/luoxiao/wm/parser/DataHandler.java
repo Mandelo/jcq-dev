@@ -25,21 +25,35 @@ public class DataHandler {
         } else if ("true".equals(res)) {
             String orderDtoStr = jsonObject.getString("data");
             String itemEngName = jsonObject.getString("itemEngName");
-            String itemChnName =  jsonObject.getString("itemChnName");
+            String itemChnName = jsonObject.getString("itemChnName");
             List<OrderDto> dtoList = JSON.parseArray(orderDtoStr, OrderDto.class);
-            StringBuffer sb = new StringBuffer();
+
             int total = dtoList.size();
-            if (total < 1) return null;
-            sb.append("您查询的物品为:").append(itemChnName).append("\n");
-            sb.append("一共为您获取" + total + "条低价数据").append("\n");
+            if (total < 1){
+                return "未查询到相关信息";
+            }
+            StringBuffer sb = new StringBuffer();
+            sb.append(" 您查询的物品为: ").append(itemChnName).append("\n");
+            sb.append(" 一共获取" + total + "条数据").append("\n");
             for (OrderDto dto : dtoList) {
-                sb.append("昵称:" + dto.getIngame_name()).
-                        append("\t").
-                        append("价格:" + new Double(dto.getPlatinum()).intValue() + "白金").append("\n")
-                        .append("联系TA      /w " + dto.getIngame_name() + " Hi! I want to buy "+itemEngName+" for:" + dto.getPlatinum() + " platinum. (warframe.market)").append("\n");
+                sb.append(" 昵称: ")
+                        .append(dto.getIngame_name())
+                        .append("\t")
+                        .append(" 价格: ")
+                        .append(new Double(dto.getPlatinum()).intValue())
+                        .append(" 白金")
+                        .append("\n")
+                        .append(" 联系TA    /w ")
+                        .append(dto.getIngame_name())
+                        .append(" Hi! I want to buy ")
+                        .append(itemEngName)
+                        .append(" for:")
+                        .append(new Double(dto.getPlatinum()).intValue())
+                        .append(" platinum. (warframe.market)")
+                        .append("\n");
             }
             return sb.toString();
-        }else{
+        } else {
             return "什么都没查到";
         }
     }
