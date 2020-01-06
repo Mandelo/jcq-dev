@@ -1,0 +1,11 @@
+server:
+  servlet:
+    context-path: /api
+  port: 8081
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://121.199.23.203:3306/luoxiao_data?useSSL=false&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: Luoxiao@613
