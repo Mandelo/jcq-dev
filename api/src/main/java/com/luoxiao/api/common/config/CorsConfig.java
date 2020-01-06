@@ -1,4 +1,4 @@
-package com.luoxiao.api.config;
+package com.luoxiao.api.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
