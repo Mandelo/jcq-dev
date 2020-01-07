@@ -1,4 +1,4 @@
-package com.luoxiao.api.plaincycle.entity;
+package com.luoxiao.plaincycle.Entity;
 
 import lombok.Data;
 

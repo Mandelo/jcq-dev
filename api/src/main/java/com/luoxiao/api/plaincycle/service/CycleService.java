@@ -2,8 +2,8 @@ package com.luoxiao.api.plaincycle.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.luoxiao.api.common.config.UrlConstant;
 import com.luoxiao.api.common.util.UrlUtils;
-import com.luoxiao.api.plaincycle.entity.EarthCycleEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -19,18 +19,30 @@ public class CycleService {
 
     /**
      * @description : earth time
-     * @param url:
      * @return: java.lang.String
      */
-    String getEarthCycle(String url){
+   public String getEarthCycle(){
+       String url = UrlConstant.WARFRAME_STAT_URL;
         Map<String,Object> resMap = UrlUtils.getData(url);
         Boolean isSuccess = (Boolean) resMap.get("res");
         if(isSuccess){
             String dataStr = (String) resMap.get("data");
             JSONObject jsonObject = JSON.parseObject(dataStr);
-            String earthCycleStr = jsonObject.getString("earthCycle");
-            EarthCycleEntity earthCycleEntity = JSON.parseObject(earthCycleStr,EarthCycleEntity.class);        }
+           return jsonObject.getString("earthCycle");
+        }
             return null;
+    }
+
+    public String getCetusCycle(){
+        String url = UrlConstant.WARFRAME_STAT_URL;
+        Map<String,Object> resMap = UrlUtils.getData(url);
+        Boolean isSuccess = (Boolean) resMap.get("res");
+        if(isSuccess){
+            String dataStr = (String) resMap.get("data");
+            JSONObject jsonObject = JSON.parseObject(dataStr);
+            return jsonObject.getString("cetusCycle");
+        }
+        return null;
     }
 
 }

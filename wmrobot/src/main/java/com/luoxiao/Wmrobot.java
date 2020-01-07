@@ -1,5 +1,6 @@
 package com.luoxiao;
 
+import com.luoxiao.plaincycle.PlainCycleService;
 import com.luoxiao.wm.parser.DataHandler;
 import com.sobte.cqp.jcq.entity.*;
 import com.sobte.cqp.jcq.event.JcqAppAbstract;
@@ -36,7 +37,8 @@ public class Wmrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
         // 下面对主类进行各方法测试,按照JCQ运行过程，模拟实际情况
         demo.startup();// 程序运行开始 调用应用初始化方法
         demo.enable();// 程序初始化完成后，启用应用，让应用正常工作
-        demo.privateMsg(0, 10004, 3111111112312314L, "wm牛p", 0);
+//      demo.groupMsg()
+        demo.privateMsg(0, 10004, 3111111112312314L, "地球时间", 0);
         // 开始模拟发送消息
         // 模拟私聊消息
         // 开始模拟QQ用户发送消息，以下QQ全部编造，请勿添加
@@ -47,7 +49,7 @@ public class Wmrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
 //        demo.privateMsg(0, 10005, 3333333334L, res, 0);
         // 模拟群聊消息
         // 开始模拟群聊消息
-//        demo.groupMsg(0, 10006, 3456789012L, 3333333334L, "", "菜单", 0);
+//        demo.groupMsg(0, 10006, 3456789012L, 3333333334L, "", "地球时间", 0);
 //        demo.groupMsg(0, 10008, 3456789012L, 11111111114L, "", "小喵呢，出来玩玩呀", 0);
 //        demo.groupMsg(0, 10009, 427984429L, 3333333334L, "", "[CQ:at,qq=2222222224] 来一起玩游戏，开车开车", 0);
 //        demo.groupMsg(0, 10010, 427984429L, 3333333334L, "", "好久不见啦 [CQ:at,qq=11111111114]", 0);
@@ -80,6 +82,19 @@ public class Wmrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
             CQ.sendPrivateMsg(fromQQ, "wm....然后呢?");
             return MSG_IGNORE;
         }
+
+        if (("地球时间").equals(msg)) {
+            String res = PlainCycleService.getEarthCycle();
+            CQ.sendPrivateMsg(fromQQ,res);
+            return MSG_IGNORE;
+        }
+
+        if (msg.contains("夜灵平原")||msg.contains("希图斯时间")) {
+            String res = PlainCycleService.getCetusCycle();
+            CQ.sendPrivateMsg(fromQQ,res);
+            return MSG_IGNORE;
+        }
+
         if (msg.contains("wm")) {
             String u = null;
             try {
@@ -113,9 +128,6 @@ public class Wmrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
                 e.printStackTrace();
                 return MSG_IGNORE;
             }
-        } else if (!msg.contains("我想听")) {
-            CQ.sendPrivateMsg(fromQQ, "其他功能尚待开发");
-            return MSG_IGNORE;
         } else {
             CQ.sendPrivateMsg(fromQQ, "excuse me??");
             return MSG_IGNORE;
@@ -248,7 +260,17 @@ public class Wmrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
                 e.printStackTrace();
                 return MSG_IGNORE;
             }
-        } else {
+        } else if (("地球时间").equals(msg)) {
+            String res = PlainCycleService.getEarthCycle();
+            CQ.sendGroupMsg(fromGroup, CC.at(fromQQ) + res);
+            return MSG_IGNORE;
+        } else if(msg.contains("夜灵平原")||msg.contains("希图斯时间")){
+            String res = PlainCycleService.getCetusCycle();
+            CQ.sendGroupMsg(fromGroup, CC.at(fromQQ) + res);
+            return MSG_IGNORE;
+        }
+
+        else {
             return MSG_IGNORE;
         }
 
