@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * @Classname UrlUtils
- * @Description TODO
+ * @Description http请求工具
  * @Date 2020/1/6
  * @Created by luox
  */

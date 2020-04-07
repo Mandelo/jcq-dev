@@ -34,10 +34,12 @@ public enum WmSearchConstant {
     private String code;
     private  String value;
 
-    private WmSearchConstant(String code,String value){
+     WmSearchConstant(String code,String value){
         this.code = code;
         this.value = value;
     }
+
+
 
 
 

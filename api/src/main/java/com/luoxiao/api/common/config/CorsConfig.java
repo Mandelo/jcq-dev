@@ -8,7 +8,7 @@ import org.springframework.web.filter.CorsFilter;
 
 /**
  * @Classname CorsConfig
- * @Description
+ * @Description 开启跨域支持
  * @Date 2020/1/3
  * @Created by luox
  */

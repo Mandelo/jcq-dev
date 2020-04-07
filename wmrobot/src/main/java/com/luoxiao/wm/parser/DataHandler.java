@@ -16,6 +16,11 @@ import java.util.List;
  */
 public class DataHandler {
 
+    /**
+     * @description : 处理返回的接口字符串
+     * @param jsonStr:
+     * @return: java.lang.String
+     */
     public static String handleData(String jsonStr) {
         //提取order的JSON数组
         JSONObject jsonObject = JSON.parseObject(jsonStr);
@@ -57,7 +62,6 @@ public class DataHandler {
             return "什么都没查到";
         }
     }
-
 
     //按照价格排序
     private static List<OrderDto> priceSort(List<OrderDto> orderList) {

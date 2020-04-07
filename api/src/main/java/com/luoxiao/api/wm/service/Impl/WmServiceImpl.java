@@ -1,10 +1,13 @@
 package com.luoxiao.api.wm.service.Impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.luoxiao.api.common.config.UrlConstant;
 import com.luoxiao.api.wm.constant.WmSearchConstant;
 import com.luoxiao.api.wm.dao.WmItemDicMapper;
 import com.luoxiao.api.wm.entity.WmItemDic;
 import com.luoxiao.api.wm.service.WmService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,14 +33,15 @@ public class WmServiceImpl implements WmService {
     @Autowired
     WmItemDicMapper wmItemDicMapper;
 
+    Logger logger = LoggerFactory.getLogger(WmServiceImpl.class);
+
     @Override
     public Map<String, Object> getItemStr(String kw) {
         Map<String, Object> map = new HashMap<>();
-        String prefix = "https://api.warframe.market/v1/items/";
-        String suffix = "/orders?include=item";
+        String prefix = UrlConstant.WM_URL_PREFIX;
+        String suffix = UrlConstant.WM_URL_SUFFIX;
         String k = kw.replace("wm", "");
         String k1 = k.replaceAll(" ", "");
-//        String itemName = wmItemDicMapper.
         EntityWrapper<WmItemDic> wrapper = new EntityWrapper<>();
         wrapper.like("search_key", k1);
         List<WmItemDic> wmItemDics = wmItemDicMapper.selectList(wrapper);
@@ -64,6 +68,7 @@ public class WmServiceImpl implements WmService {
                 if (content.length() < 1) {
                     map.put("res", false);
                     map.put("msg", WmSearchConstant.NOT_FOUND.getValue());
+                    logger.info("-------------------未发现卖家--------------------");
                     return map;
                 }
                 map.put("res", true);
@@ -73,6 +78,7 @@ public class WmServiceImpl implements WmService {
                 return map;
             } catch (IOException e) {
                 e.printStackTrace();
+                logger.error("------------------数据查询失败------------------");
             }
             map.put("res", false);
             map.put("msg", WmSearchConstant.ERROR.getValue());
