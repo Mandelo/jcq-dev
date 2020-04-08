@@ -36,11 +36,11 @@ public class ParseUtil {
             }
         }
         int maxCount;
-        //仅仅返回五条前五条数据
+        //仅仅返回五条3条数据
         List<OrderDto> priceSortList = priceSort(onLineOrder);
         List<OrderDto> resList = new ArrayList<>();
-        if (onLineOrder.size() > 5) {
-            maxCount = 5;
+        if (onLineOrder.size() > 3) {
+            maxCount = 3;
         } else {
             maxCount = onLineOrder.size();
         }
