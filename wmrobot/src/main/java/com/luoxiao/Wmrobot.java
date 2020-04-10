@@ -224,10 +224,10 @@ public class Wmrobot extends JcqAppAbstract implements ICQVer, IMsg, IRequest {
             CQ.sendGroupMsg(fromGroup, CC.at(fromQQ) + "wm...然后呢?");
             return MSG_IGNORE;
         }
-        if (msg.contains("wm女友") || msg.contains("wm女朋友") || msg.contains("wm母仓鼠")) {
+        if (msg.contains("wm 女友") || msg.contains("wm 女朋友") || msg.contains("wm 母仓鼠")) {
             CQ.sendGroupMsg(fromGroup, CC.at(fromQQ) + "你在想屁吃??   < ( ´◔ ‸◔`)ノ  ");
             return MSG_IGNORE;
-        } else if (msg.contains("wm")) {
+        } else if (msg.contains("wm ")) {
             String u = null;
             try {
                 u = "http://121.199.23.203:8081/api/wm/price?itemName=" + URLEncoder.encode(msg, "utf-8");
